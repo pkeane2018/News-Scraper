@@ -59,6 +59,7 @@ app.get("/hello", function (req, res) {
                     })
 
             };   
+
         });
 
     }).then(function() {

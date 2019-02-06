@@ -1,7 +1,69 @@
+<style>
+    a:link {
+        color: black;
+    }
+
+    a:visited {
+        color: black;
+    }
+{{!-- 
+    .btn {
+        float: right
+    } --}}
+
+    form {
+        background-color: white;
+        padding: 2%;
+    }
+
+    .yourcomment {
+        width: 100%;
+    }
+
+
+</style>
+
 <div class="container">
+    <h1>Vox Top Stories</h1>
+    <br>
     {{#each articles}}
-    <h1><a href={{link}}>{{title}}</a></h1>
-    <p>Summary: {{summary}}</p>
+    <div class="jumbotron">
+        <h2><a href={{link}} target="_blank">{{title}}</a></h2>
+        <hr class="my-4">
+        <p>Summary: {{summary}}</p>
+        <br>
+        <div class="container comments">
+            <h3>Comments: </h3>
+            <form>
+                <p>Add your comment here</p>
+                Username:<br>
+                <input type='text' name='username'>
+                <br><br>
+                Comment:<br>
+                <textarea rows="3" name='yourcomment' class="yourcomment"></textarea>
+                <br><br>
+                 <button class="btn btn-primary add-comment" data-id={{_id}}>Add Comment</button>
+            </form>
+            <br>
+            <div class="card bg-light mb-3 starter-card" style="max-width: 18rem;">
+                <div class="card-body">
+                    <p class="card-text">No Comments yet. Be the first to comment on this article.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <br>
     {{/each}}
 </div>
+
+<script>
+
+$(".add-comment").click(function(){
+    alert("IT'S RAINING MEN!");
+    $(this).parent().find(".card").hide();
+    $(this).parent().find(".comments").prepend(
+        
+    )
+});
+    
+</script>
