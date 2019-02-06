@@ -20,7 +20,6 @@
         width: 100%;
     }
 
-
 </style>
 
 <div class="container">
@@ -37,7 +36,7 @@
             <form>
                 <p>Add your comment here</p>
                 Username:<br>
-                <input type='text' name='username'>
+                <input type='text' name='username' class="username">
                 <br><br>
                 Comment:<br>
                 <textarea rows="3" name='yourcomment' class="yourcomment"></textarea>
@@ -50,6 +49,7 @@
                     <p class="card-text">No Comments yet. Be the first to comment on this article.</p>
                 </div>
             </div>
+           {{>comments}}
         </div>
     </div>
     <br>
@@ -58,12 +58,34 @@
 
 <script>
 
-$(".add-comment").click(function(){
-    alert("IT'S RAINING MEN!");
-    $(this).parent().find(".card").hide();
-    $(this).parent().find(".comments").prepend(
-        
-    )
+    $(".add-comment").click(function (event) {
+
+        event.preventDefault();
+
+        var username = ($(this).parent().find(".username").val());
+        var comment = ($(this).parent().find(".yourcomment").val());
+
+        alert(username);
+        alert(comment);
+
+        var CommentID = $(this).attr("data-id");
+
+        $.ajax({
+            method: "POST",
+            url: "/articles/" + CommentID,
+            data: {
+
+                username: username,
+                body: comment
+
+            }
+        }).then(function(){
+
+        alert("Comment Submitted");
+        ($(this).parent().find("#username").val(""));
+        ($(this).parent().find("#yourcomment").val(""));
+
+        })
 });
     
 </script>

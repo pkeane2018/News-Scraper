@@ -27,7 +27,7 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-app.get("/hello", function (req, res) {
+app.get("/home", function (req, res) {
 
     console.log("Hoochy Mama!");
 
@@ -63,7 +63,9 @@ app.get("/hello", function (req, res) {
         });
 
     }).then(function() {
-        db.Article.find({}).then(function(results){
+        db.Article.find({})
+        .populate("comment")
+        .then(function(results){
             res.render("index", {
                 articles: results
             });
@@ -73,6 +75,15 @@ app.get("/hello", function (req, res) {
         })
     })
 });
+
+app.post("/articles/:id", function (req, res) {
+
+    db.Comment.create(req.body)
+        .then(function (stuff) {
+            return db.Article.update({ _id: req.params.id }, { $push: { comment: stuff } })
+        });
+
+})
 
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");

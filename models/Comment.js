@@ -7,7 +7,7 @@ var CommentSchema = new Schema({
         default: "anonymous"},
     body: {
         type: String,
-        requied: true
+        required: true
     },
     timeSubmitted: {
         type: Date, 
