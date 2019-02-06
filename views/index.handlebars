@@ -31,7 +31,7 @@
         <hr class="my-4">
         <p>Summary: {{summary}}</p>
         <br>
-        <div class="container comments">
+        <div class="container comments" data-id="{{_id}}">
             <h3>Comments: </h3>
             <form>
                 <p>Add your comment here</p>
@@ -44,11 +44,6 @@
                  <button class="btn btn-primary add-comment" data-id={{_id}}>Add Comment</button>
             </form>
             <br>
-            <div class="card bg-light mb-3 starter-card" style="max-width: 18rem;">
-                <div class="card-body">
-                    <p class="card-text">No Comments yet. Be the first to comment on this article.</p>
-                </div>
-            </div>
            {{>comments}}
         </div>
     </div>
@@ -88,4 +83,13 @@
         })
 });
     
+    $(".delete-comment").click(function(event){
+        event.preventDefault();
+
+        $.ajax({
+            method: "DELETE",
+            url: "/comment/" + ($(this).attr("data-id")) + "/" + $(this).parents(".comments").attr("data-id")
+        })
+    });   
+
 </script>
