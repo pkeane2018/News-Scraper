@@ -74,10 +74,6 @@ app.delete("/comment/:commentid/:articleid", function(req, res){
 
     db.Comment.findByIdAndDelete(req.params.commentid)
     .then(function(){
-        console.log("This article id is" + req.params.articleid)
-        db.Article.update({_id: req.params.articleid}, { $pull: {comment: "ObjectId(" + '"' + req.params.commentid + '"' + ")"}})
-    })
-    .then(function(){
         console.log("Comment deleted");
     })
 });
