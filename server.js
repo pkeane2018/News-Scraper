@@ -70,9 +70,9 @@ app.get("/home", function (req, res) {
     })
 });
 
-app.delete("/comment/:commentid/:articleid", function(req, res){
+app.delete("/comment/:id", function(req, res){
 
-    db.Comment.findByIdAndDelete(req.params.commentid)
+    db.Comment.findByIdAndDelete(req.params.id)
     .then(function(){
         console.log("Comment deleted");
     })

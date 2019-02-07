@@ -1,4 +1,10 @@
 <style>
+
+body {
+
+    background-color: #99ccff
+}
+
     a:link {
         color: black;
     }
@@ -6,10 +12,6 @@
     a:visited {
         color: black;
     }
-{{!-- 
-    .btn {
-        float: right
-    } --}}
 
     form {
         background-color: white;
@@ -55,41 +57,35 @@
 
     $(".add-comment").click(function (event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        var username = ($(this).parent().find(".username").val());
-        var comment = ($(this).parent().find(".yourcomment").val());
+            var username = ($(this).parent().find(".username").val());
+            var comment = ($(this).parent().find(".yourcomment").val());
+            var CommentID = $(this).attr("data-id");
 
-        alert(username);
-        alert(comment);
+            $.ajax({
+                method: "POST",
+                url: "/articles/" + CommentID,
+                data: {
 
-        var CommentID = $(this).attr("data-id");
+                    username: username,
+                    body: comment
 
-        $.ajax({
-            method: "POST",
-            url: "/articles/" + CommentID,
-            data: {
-
-                username: username,
-                body: comment
-
-            }
-        }).then(function(){
-
-        alert("Comment Submitted");
-        ($(this).parent().find("#username").val(""));
-        ($(this).parent().find("#yourcomment").val(""));
-
-        })
-});
+                }
+            }).then(function(){
+                location.reload(true); //I tried to use this reload the page immediately after the post request finishes, but it doesn't seem to be working, not sure what else to do.
+            });
+        });
     
     $(".delete-comment").click(function(event){
         event.preventDefault();
 
         $.ajax({
             method: "DELETE",
-            url: "/comment/" + ($(this).attr("data-id")) + "/" + $(this).parents(".comments").attr("data-id")
-        })
+            url: "/comment/" + ($(this).attr("data-id"))
+        }).then(function(){
+          location.reload(true); //Same issue as with post request above
+        });
     });   
 
 </script>
