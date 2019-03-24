@@ -32,4 +32,4 @@ The user can scroll through the page and see the headline and a summary for each
 There is code in index.handlebars to reload the page after a comment is posted or deleted, but it is not functioning as intended. Modifications could be made to the code to fix this issue. 
  
  ## Link to deployed page
- < a href="https://radiant-ravine-53892.herokuapp.com/">Vox News Scraper</a>
+ <a href="https://radiant-ravine-53892.herokuapp.com/">Vox News Scraper</a>
