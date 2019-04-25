@@ -11,6 +11,13 @@ In the main directory, the 'server.js' file contains code for creating the 'mong
 
 ## How to use the site
 The user can scroll through the page and see the headline and a summary for each top story. Clicking on the headline will also open the article in a new tab. Users can see comments left by other users on each article and leave their own comment by entering a username and comment in the labled text boxes and clicking the 'Add Comment' button. This comment will then be displayed under the news article each time the page is loaded. 
+<br><br>
+![Image-1](./images/image-1.png)
+<br><br>
+![Image-2](./images/image-2.png)
+<br><br>
+![Image-3](./images/image-3.png)
+<br><br>
 
 ## Technology used
 * HTML
