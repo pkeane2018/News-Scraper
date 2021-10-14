@@ -29,8 +29,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.get("/", function (req, res) {
 
-    console.log("Hoochy Mama!");
-
     axios.get("https://www.vox.com/").then(function(response) {
 
         var $ = cheerio.load(response.data);
@@ -44,8 +42,6 @@ app.get("/", function (req, res) {
 
             if (((entry.summary) !== "") && ((entry.summary) !== null)) {
 
-                console.log(entry);
-
                 db.Article.create(entry)
                     
                     .catch(function (err) {
@@ -58,10 +54,12 @@ app.get("/", function (req, res) {
 
     }).then(function() {
         db.Article.find({})
+        .lean()
         .populate("comment")
         .then(function(results){
+            let articles = results.reverse();
             res.render("index", {
-                articles: results
+                articles: articles
             });
         })
         .catch(function(err){
