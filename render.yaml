@@ -9,6 +9,7 @@ services:
     plan: free # optional; defaults to starter
     numInstances: 1
     envVars:
-      - key: MONGODB_URI # Imported from Heroku app
-        value: PLACEHOLDER_VALUE
+      - key: PLACEHOLDER_VALUE
+        snyc: false #PLACEHOLDER FOR VALUE TO BE ADDED IN DASHBOARD
+
 
