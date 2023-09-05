@@ -8,7 +8,4 @@ services:
     dockerfilePath: Dockerfile.render
     plan: free # optional; defaults to starter
     numInstances: 1
-    envVars:
-      - key: MONGODB_URI # Imported from Heroku app
-        value: PLACEHOLDER_VALUE
 
