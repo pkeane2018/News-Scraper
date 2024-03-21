@@ -81,9 +81,8 @@ body {
 
         $.ajax({
             method: "DELETE",
-            url: "/comment/" + ($(this).attr("data-id"))
-        }).then(function(){
-          location.reload(true); //Same issue as with post request above
+            url: "/comment/" + ($(this).attr("data-id")),
+            success: location.reload()
         });
     });   
 
