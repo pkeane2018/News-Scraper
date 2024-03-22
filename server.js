@@ -80,7 +80,12 @@ app.post("/articles/:id", function (req, res) {
 
     db.Comment.create(req.body)
         .then(function (stuff) {
-            return db.Article.update({ _id: req.params.id }, { $push: { comment: stuff } })
+            return db.Article.update({ _id: req.params.id }, 
+                { 
+                    $push: { comment: {
+                    $each: [stuff],
+                    $position: 0
+            }}})
         });
 
 })

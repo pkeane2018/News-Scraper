@@ -71,9 +71,8 @@ body {
                     username: username,
                     body: comment
 
-                }
-            }).then(function(){
-                location.reload(true); //I tried to use this reload the page immediately after the post request finishes, but it doesn't seem to be working, not sure what else to do.
+                },
+                success: location.reload()
             });
         });
     
@@ -82,9 +81,8 @@ body {
 
         $.ajax({
             method: "DELETE",
-            url: "/comment/" + ($(this).attr("data-id"))
-        }).then(function(){
-          location.reload(true); //Same issue as with post request above
+            url: "/comment/" + ($(this).attr("data-id")),
+            success: location.reload()
         });
     });   
 
